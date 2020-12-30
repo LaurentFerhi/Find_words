@@ -2,7 +2,7 @@
 # Program:    	FIND WORDS 
 # Description:  Find the longest words from a set of letters (french)
 # Author:       Laurent FERHI
-# Version:      1.0
+# Version:      1.1
 # ----------------------------------------------------------------------------+
 
 import pandas as pd
@@ -31,10 +31,9 @@ if __name__ == "__main__":
     # Import corpus
     data = pd.read_fwf('liste_francais.txt', header=None)
     data.columns = ['mots']
-    # Lowercase words
-    data.mots = data.mots.apply(lambda x: x.upper())
-    # remove accents
-    data.mots = data.mots.apply(strip_accents)
+    data.mots = data.mots.apply(lambda x: x.upper()) # Lowercase words
+    data.mots = data.mots.apply(strip_accents) # remove accents
+    data = data.drop_duplicates()
 
     # Print title and input required letters
     print('\n*** CHERCHEUR DE MOTS ***\n')
