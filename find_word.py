@@ -2,7 +2,7 @@
 # Program:    	FIND WORDS 
 # Description:  Find the longest words from a set of letters (french)
 # Author:       Laurent FERHI
-# Version:      1.1
+# Version:      1.2
 # ----------------------------------------------------------------------------+
 
 import pandas as pd
@@ -22,7 +22,7 @@ def calc_score(word):
     If required letters are enough to form the word, returns the length of word. Else, returns 0
     """
     common = Counter(required_letters.upper()) & Counter(word)
-    if len(common) < len(word):
+    if sum(common.values()) < len(word):
         return 0
     return len(word)
 
