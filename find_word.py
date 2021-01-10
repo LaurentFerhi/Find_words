@@ -37,8 +37,8 @@ if __name__ == "__main__":
 
     # Print title and input required letters
     print('\n*** LE MOT LE PLUS LONG ***\n')
-    required_letters = input('Entrer les lettres \
-                             (ou 0 = lettres au hasard, ou 1 = le jeu du mot le plus long): ')
+    required_letters = input('Entrer les lettres'+ \
+                             '(ou 0 = lettres au hasard, ou 1 = le jeu du mot le plus long): ')
 
     # Choose 9 random letters
     if required_letters == '0':
