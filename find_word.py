@@ -2,7 +2,7 @@
 # Program:    	FIND WORDS 
 # Description:  Find the longest words from a set of letters (french)
 # Author:       Laurent FERHI
-# Version:      1.2
+# Version:      1.3
 # ----------------------------------------------------------------------------+
 
 import pandas as pd
@@ -36,13 +36,34 @@ if __name__ == "__main__":
     data = data.drop_duplicates()
 
     # Print title and input required letters
-    print('\n*** CHERCHEUR DE MOTS ***\n')
-    required_letters = input('Entrer les lettres (ou 0 = lettres au hasard): ')
+    print('\n*** LE MOT LE PLUS LONG ***\n')
+    required_letters = input('Entrer les lettres \
+                             (ou 0 = lettres au hasard, ou 1 = le jeu du mot le plus long): ')
 
     # Choose 9 random letters
     if required_letters == '0':
         required_letters = "".join([random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ') for _ in range(9)])
         print('Lettres choisies pour vous: {}'.format(required_letters))
+
+    # Choose 9 letters (vowel or consonant)
+    if required_letters == '1':
+        i, letter_list = 0, []
+        while i < 9:
+            entry = input('Voyelle ou consonne (v/c) ?')
+            if entry == 'v':
+                cpu_choice = random.choice('AEIOUY')
+                letter_list.append(cpu_choice)
+                print('Le {}. Les lettres: {}'.format(cpu_choice, "".join(letter_list)))
+                i+=1
+            elif entry == 'c':
+                cpu_choice = random.choice('BCDFGHJKLMNPQRSTVWXZ')
+                letter_list.append(cpu_choice)
+                print('Le {}. Les lettres: {}'.format(cpu_choice, "".join(letter_list)))
+                i+=1
+            else:
+                print('Saisie erronée...')
+        required_letters = "".join(letter_list)
+        print('\nLettres choisies pour vous: {}'.format(required_letters))
 
     # Calculate score
     data['score'] = data.mots.apply(calc_score)
